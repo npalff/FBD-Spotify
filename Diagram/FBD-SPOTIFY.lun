@@ -6086,7 +6086,7 @@ Will be promoted to Plan Contract when the first payment is received
 *60
 565
 0
-When received the date_received is updated and received is changed to True. Must trigger a check for the promotion of Temp Plan Contract, if is the case
+When the payment is received the date_received is updated and received is changed to True. Must trigger a check for the promotion of Temp Plan Contract, if is the case
 566
 568
 -
