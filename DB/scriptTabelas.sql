@@ -176,6 +176,7 @@ create table waitingConfirmation
   USERID char(10) not null,
   CONTRACTID char(10) not null,
   HOLDERID char(10) not null,
+  PLANID char(3) not null,
   primary key (USERID, CONTRACTID),
   foreign key(USERID) references _user
   	on delete cascade
@@ -185,6 +186,9 @@ create table waitingConfirmation
   	on update restrict,
   foreign key(HOLDERID) references _user
   	on delete cascade
+  	on update restrict,
+  foreign key(PLANID) references plan
+  	on delete restrict
   	on update restrict
 );
 
