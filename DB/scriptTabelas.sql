@@ -1,16 +1,29 @@
-﻿drop table if  exists _user;
 drop table if  exists country;
-drop table if  exists playlist;
-drop table if  exists genre;
+drop table if  exists _user;
+drop table if  exists waitingConfirmation;
+drop table if  exists subscription;
+drop table if  exists plan;
+drop table if  exists lib_playlist;
+drop table if  exists lib_music;
 drop table if  exists music;
+drop table if  exists playlist_music;
+drop table if  exists playlist;
 drop table if  exists album;
 drop table if  exists artist;
-drop table if  exists advertise;
-drop table if  exists plan;
-drop table if  exists plancontract;
+drop table if  exists album_music;
+drop table if  exists artist_album;
+drop table if  exists genre;
+drop table if  exists artist_music;
 drop table if  exists contract;
-drop table if  exists advcontract;
+drop table if  exists advertise;
 drop table if  exists advertiser;
+drop table if  exists adv_contact;
+drop table if  exists contract_cover;
+drop table if  exists clickers;
+drop table if  exists document;
+drop table if  exists payment;
+drop table if  exists signed;
+
 
 create table country
 (
