@@ -1,16 +1,3 @@
-drop table if  exists country;
-drop table if  exists _user;
-drop table if  exists plan;
-drop table if  exists music;
-drop table if  exists playlist;
-drop table if  exists album;
-drop table if  exists artist;
-drop table if  exists genre;
-drop table if  exists contract;
-drop table if  exists advertise;
-drop table if  exists advertiser;
-drop table if  exists document;
-drop table if  exists payment;
 drop table if  exists waitingConfirmation;
 drop table if  exists subscription;
 drop table if  exists lib_playlist;
@@ -23,44 +10,63 @@ drop table if  exists adv_contact;
 drop table if  exists contract_cover;
 drop table if  exists clickers;
 drop table if  exists signed;
-
+drop table if  exists _user;
+drop table if  exists country;
+drop table if  exists plan;
+drop table if  exists music;
+drop table if  exists playlist;
+drop table if  exists album;
+drop table if  exists artist;
+drop table if  exists genre;
+drop table if  exists payment;
+drop table if  exists contract;
+drop table if  exists advertise;
+drop table if  exists advertiser;
+drop table if  exists document;
 
 create table country
 (
 COUNTRYID char(3) not null,
-COUNTRYNAME varchar(30) not null,
+COUNTRYNAME varchar(30) not null unique,
 primary key(COUNTRYID)
 );
 
 create table _user
 (
   USERID char(10) not null,
-  USERNAME varchar(20) not null,
-  EMAIL varchar(40) not null,
+  USERNAME varchar(20) not null unique,
+  EMAIL varchar(40) not null unique,
   PASS varchar(20) not null,
   PREMIUMSTATE numeric(1) not null,
   USERCOUNTRY char(3) not null,
-  LIBID char(10) not null,
+  LIBID char(10) not null unique,
   primary key(USERID),
   foreign key(USERCOUNTRY) references country
 	on delete restrict
-	on update cascade,
+	on update cascade
 );
 
 create table plan
 (
-PLANID char(3) not null,
-PLANNAME varchar(20) not null,
-PRICE float(4) not null,
-AVAILABLE boolean(1) not null, 
-primary key(PLANID)
+  PLANID char(3) not null,
+  PLANNAME varchar(20) not null unique,
+  PRICE numeric(6,2) not null,
+  AVAILABLE boolean not null, 
+  primary key(PLANID)
+);
+
+create table genre
+(
+  GENREID char(5) not null,
+  GENRENAME varchar(30) not null unique,
+  primary key(GENREID)
 );
 
 create table playlist
 (
   PLAYID char(15) not null,
   PLAYNAME varchar(50) not null,
-  ISPUBLIC boolean(1) not null,
+  ISPUBLIC boolean not null,
   GENRE1 char(5),
   GENRE2 char(5),
   primary key(PLAYID),
@@ -117,19 +123,12 @@ create table artist
   	on update cascade
 );
 
-create table genre
-(
-  GENREID char(5) not null,
-  GENRENAME varchar(30) not null,
-  primary key(GENREID)
-);
-
 create table contract
 (
   CONTRACTID char(10) not null,
-  VALUE float(7) not null,
-  SIGNDATE date(1),
-  EXPDATE date(1),
+  VALUE numeric(6,2) not null,
+  SIGNDATE date,
+  EXPDATE date,
   DOCID char(10) not null,
   TYPE numeric(1) not null,
   primary key(CONTRACTID)
@@ -137,23 +136,23 @@ create table contract
 
 create table advertiser
 (
- ADVID char(10) not null,
- ADVNAME varchar(30) not null,
- primary key(ADVID),
+   ADVID char(10) not null,
+   ADVNAME varchar(30) not null,
+   primary key(ADVID)
 );
 
 create table payment
 (
   PAYID char(15) not null,
-  VALUE float(7) not null,
-  RECEIVED boolean(1) not null,
-  GENDATE date(1) not null,
-  EXPDATE date(1) not null,
-  DATERECEIV date(1),
-  CONTRACTID char(10) not null,
+  VALUE numeric(6,2) not null,
+  RECEIVED boolean not null,
+  GENDATE date not null,
+  EXPDATE date not null,
+  DATERECEIV date,
+  CONTRACTID char(10),
   primary key(PAYID),
   foreign key(CONTRACTID) references contract
-  	on delete set null,
+  	on delete set null
   	on update restrict
 );
 
@@ -166,10 +165,10 @@ create table document
 
 create table advertise
 (
-ADID char(10) not null,
-SHOWCOUNT numeric(8)  not null,
-CLICKCOUNT numeric(8)  not null,
-primary key(ADID)
+  ADID char(10) not null,
+  SHOWCOUNT numeric(8)  not null,
+  CLICKCOUNT numeric(8)  not null,
+  primary key(ADID)
 );
 
 create table waitingConfirmation
@@ -189,7 +188,7 @@ create table subscription
 (
   CONTRACTID char(10) not null,
   USERID char(10) not null,
-  HOLDERID char(10) not null,
+  HOLDERID char(10) not null unique,
   PLANID char(3) not null,
   foreign key(CONTRACTID) references contract
   	on delete restrict
@@ -260,7 +259,7 @@ create table album_music
 create table artist_album
 (
   ALBUMID char(12) not null,
-  ARTID char(8) not null
+  ARTID char(8) not null,
   primary key(ALBUMID, ARTID),
   foreign key(ALBUMID) references album
   	on delete cascade
