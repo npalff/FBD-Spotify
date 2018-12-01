@@ -175,15 +175,11 @@ create table waitingConfirmation
 (
   USERID char(10) not null,
   CONTRACTID char(10) not null,
-  HOLDERID char(10) not null,
   primary key (USERID, CONTRACTID),
   foreign key(USERID) references _user
   	on delete cascade
   	on update restrict,
   foreign key(CONTRACTID) references contract
-  	on delete cascade
-  	on update restrict,
-  foreign key(HOLDERID) references _user
   	on delete cascade
   	on update restrict
 );

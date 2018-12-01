@@ -1225,7 +1225,7 @@ SCHEMA
 
 1
 20181124
-20181201
+20181130
 F
 E
 
@@ -1286,7 +1286,7 @@ E
 117
 319
 321
-627
+616
 131
 548
 544
@@ -1312,7 +1312,6 @@ E
 105
 317
 364
-616
 94
 578
 -
@@ -1340,7 +1339,6 @@ E
 615
 619
 621
-629
 -
 78
 436
@@ -1887,7 +1885,6 @@ Is To Firm
 
 
 
-627
 -
 -
 -
@@ -1899,7 +1896,6 @@ Is To Firm
 -
 -
 -
-629
 -
 *5
 286
@@ -2204,30 +2200,6 @@ Bound To
 601
 -
 603
--
--
--
--
-*7
-627
-0
-holder_id
-
-
-
-1
-1
- 
-F
-T
-I
-10
-0
--
--
--
--
-628
 -
 -
 -
@@ -3259,6 +3231,23 @@ I
 615
 -
 *8
+624
+0
+
+1
+N
+ 
+
+
+-
+625
+-
+626
+-
+-
+-
+-
+*8
 558
 0
 
@@ -3441,23 +3430,6 @@ N
 272
 -
 276
--
--
--
--
-*8
-624
-0
-
-1
-N
- 
-
-
--
-625
--
-626
 -
 -
 -
@@ -3939,6 +3911,9 @@ N
 -
 -
 *9
+625
+0
+*9
 559
 0
 *9
@@ -3946,9 +3921,6 @@ N
 0
 *9
 486
-0
-*9
-625
 0
 *9
 309
@@ -4612,7 +4584,6 @@ User
 617
 620
 626
-628
 -
 *18
 1
@@ -4630,10 +4601,10 @@ User
 1
 -
 *19
-628
+626
 0
-0
-0
+53844
+105343
 0
 *19
 620
@@ -4642,10 +4613,16 @@ User
 202000
 0
 *19
+617
+0
+0
+0
+0
+*19
 614
 0
-304100
-182700
+298800
+181400
 0
 *19
 608
@@ -4870,12 +4847,6 @@ User
 147313
 0
 *19
-626
-0
-53844
-105343
-0
-*19
 260
 0
 145463
@@ -5030,12 +5001,6 @@ User
 0
 177254
 238284
-0
-*19
-617
-0
-0
-0
 0
 *19
 554
@@ -5525,6 +5490,10 @@ User
 0
 *40
 32
+624
+624
+*40
+32
 558
 558
 *40
@@ -5567,10 +5536,6 @@ User
 32
 271
 271
-*40
-32
-624
-624
 *40
 32
 265
@@ -5739,10 +5704,6 @@ User
 44
 595
 595
-*40
-37
-627
-627
 *40
 37
 616
@@ -6198,6 +6159,7 @@ When the payment is received the date_received is updated and received is change
 0
 user_name and user_email must be unique, separately
 user_email must respect the correct format
+A User can follow an Artist, other Users public Playlists and another Users
 *Not described diagrammatically because of the visual pollution
 A User can search for Musics, Playlists, Artists and filter these searches by Genre
 A User can search for another Users
@@ -6252,7 +6214,6 @@ holder_id is an user_id that identifies the contract holder
 holder_id must be unique
 613
 615
-629
 -
 614
 -
