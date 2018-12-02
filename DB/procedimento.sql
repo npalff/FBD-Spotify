@@ -2,12 +2,14 @@
 
 -- DROP FUNCTION public.check_subscribers();
 
+-- Controle de promoção de usuários. Quando um pagamento referente a um contrato for recebido, verificar-se-á se há usuários vinculados que devem ser promovidos. Se sim, realiza a promoção.
+
 CREATE FUNCTION public.check_subscribers()
     RETURNS trigger
     LANGUAGE 'plpgsql'
     COST 100
     VOLATILE NOT LEAKPROOF 
-AS $BODY$-- Controle de promoção de usuários
+AS $BODY$
 begin 
 	if NEW.RECEIVED=True and NEW.CONTRACTID is not null then
 	
@@ -31,6 +33,7 @@ begin
 	  where CONTRACTID = new.CONTRACTID;
 	  
 	end if;
+	RETURN NULL;
 end;
 $BODY$;
 

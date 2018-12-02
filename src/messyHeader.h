@@ -234,15 +234,18 @@ void getMostFrequentCountryAccessers(PGconn* conn){
   printf("\n\nDado um anúncio, o nome dos países que mais frequentemente o acessam e respectivo número de cliques\nEntre com o id do anuncio \n");
 
   scanf("%s", advname);
-  char endOfCommand[500] = "\' group by COUNTRYID\
+  char midOfCommand[500] = "\' group by COUNTRYID\
                               having count(_user) >\
                                   (select avg(count_bycountry)\
                                   from (select count(USERID) as count_bycountry\
                                         from clickers natural join _user\
-                                        group by COUNTRYID\
-                                      ) c_country\
-                                    )";
+                                        where ADID=\'";
+  char endOfCommand[100] = "\' group by COUNTRYID\
+                              ) c_country\
+                              )";
 
+  strcat(command, advname);
+  strcat(command, midOfCommand);
   strcat(command, advname);
   strcat(command, endOfCommand);
 
