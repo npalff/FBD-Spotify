@@ -207,19 +207,14 @@ insert into advertise values('AD59957494',459,152);
 insert into waitingConfirmation values('SR38A9C5BR','CT38B978BR','SR38A9C5BR','PRE');
 insert into waitingConfirmation values('SR3B56D5BR','CT832196BR','SR3B56D5BR','FAM');
 insert into waitingConfirmation values('SR128102BR','CT744062BR','SR128102BR','STU');
-insert into waitingConfirmation values('SR468950BR','CT633045BR','SR468950BR','STU');
 insert into waitingConfirmation values('SR684526BR','CT979258BR','SR684526BR','PRE');
-insert into waitingConfirmation values('SR967408BR','CT432711BR','SR967408BR','PRE');
 
 
 --SUBSCRIPTIONS
-insert into subscription values('CT38B978BR', 'SR38A9C5BR', 'SR38A9C5BR', 'PRE');
 insert into subscription values('CT633045BR', 'SR468950BR', 'SR468950BR', 'STU');
-insert into subscription values('CT744062BR', 'SR128102BR', 'SR128102BR', 'STU');
 insert into subscription values('CT832196BR', 'SR3B56D5BR', 'SR4BA135BR', 'FAM');
 insert into subscription values('CT38A778BR', 'SR65879ABR', 'SR65879ABR', 'PRE');
 insert into subscription values('CT827014BR', 'SR380530BR', 'SR380530BR', 'PRE');
-insert into subscription values('CT979258BR', 'SR684526BR', 'SR684526BR', 'PRE');
 insert into subscription values('CT432711BR', 'SR967408BR', 'SR967408BR', 'PRE');
 
 --LIB_PLAYLIST
