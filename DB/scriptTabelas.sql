@@ -1,4 +1,4 @@
-drop table if  exists waitingConfirmation;
+﻿drop table if  exists waitingConfirmation;
 drop table if  exists subscription;
 drop table if  exists lib_playlist;
 drop table if  exists lib_music;
@@ -50,7 +50,7 @@ create table plan
 (
   PLANID char(3) not null,
   PLANNAME varchar(20) not null unique,
-  PRICE numeric(6,2) not null,
+  PRICE numeric(8,2) not null,
   AVAILABLE boolean not null, 
   primary key(PLANID)
 );
@@ -126,7 +126,7 @@ create table artist
 create table contract
 (
   CONTRACTID char(10) not null,
-  VALUE numeric(6,2) not null,
+  VALUE numeric(8,2) not null,
   SIGNDATE date,
   EXPDATE date,
   DOCID char(10) not null,
@@ -144,7 +144,7 @@ create table advertiser
 create table payment
 (
   PAYID char(15) not null,
-  VALUE numeric(6,2) not null,
+  VALUE numeric(8,2) not null,
   RECEIVED boolean not null,
   GENDATE date not null,
   EXPDATE date not null,

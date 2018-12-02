@@ -10,7 +10,6 @@
  insert into country values ('ITA','ITALIA');
  insert into country values ('CAN','CANADA');
  insert into country values ('SWE','SUÉCIA');
- --insert into country values ('','');
   
 -- Usuários:
 insert into _user values('SR38A9C5BR','salvDali','salv_dali@domain.com','12thisAintMaPass',0,'BRA','LIB1054357');
@@ -20,6 +19,9 @@ insert into _user values('SR4BA135BR','duda465','duda465@domain.com','male5548!'
 insert into _user values('SR468950BR','Guilherme','gui.lherme@gmail.com','gui123',1,'BRA','LIB4064848');
 insert into _user values('SR128102BR','jorge45','jorge_silva@gmail.com','#50adVWRa',0,'BRA','LIB8648628');
 insert into _user values('SR380530BR','Maria00','maria.duda@domain.com','asdee47',1,'BRA','LIB2039464');
+insert into _user values('SR684526BR','billM1cr0','bill@microsoft.com','WIN32',1,'USA','LIB2927674');
+insert into _user values('SR967408BR','steveII','steve@apple.com','AppleII',1,'USA','LIB6995051');
+insert into _user values('SR655356BR','johann123','johann@gmail.de','einstein',1,'GER','LIB5223336');
 
 
 --Planos:
@@ -122,18 +124,18 @@ insert into album values('ALB771132860', 'Elas em Evidências', 'BRMUS','SERT0')
 
 
 --ARTISTAS:
-insert into artist values('ART83740293','Skank','ROCK0','POP00');
-insert into artist values('ART83750293','Johann Sebastian Bach','CLAS0');
-insert into artist values('ART83740193','Tom Jobim','BRMUS', 'BOSNV');
-insert into artist values('ART51372041','Imagine Dragons','ELETR', 'ROCK0');
-insert into artist values('ART42678568','Ed Sheeran','POP00', 'INDIE');
-insert into artist values('ART98477554','Abba','POP00');
-insert into artist values('ART24444317','Simple Plan','ROCK0', 'PUNK0');
-insert into artist values('ART30417603','Capital Inicial','BRMUS', 'ROCK0');
-insert into artist values('ART87095276','Raul Seixas','BRMUS', 'MPB00');
-insert into artist values('ART92880259','Avicii','ELETR', 'ROCK0');
-insert into artist values('ART84684495','The Piano Guys','CLAS0');
-insert into artist values('ART46692091','Chitãozinho e Xororó','BRMUS', 'SERT0');
+insert into artist values('ART8374029','Skank','ROCK0','POP00');
+insert into artist values('ART8375029','Johann Sebastian Bach','CLAS0');
+insert into artist values('ART8374019','Tom Jobim','BRMUS', 'BOSNV');
+insert into artist values('ART5137204','Imagine Dragons','ELETR', 'ROCK0');
+insert into artist values('ART4267856','Ed Sheeran','POP00', 'INDIE');
+insert into artist values('ART9847755','Abba','POP00');
+insert into artist values('ART2444431','Simple Plan','ROCK0', 'PUNK0');
+insert into artist values('ART3041760','Capital Inicial','BRMUS', 'ROCK0');
+insert into artist values('ART8709527','Raul Seixas','BRMUS', 'MPB00');
+insert into artist values('ART9288025','Avicii','ELETR', 'ROCK0');
+insert into artist values('ART8468449','The Piano Guys','CLAS0');
+insert into artist values('ART4669209','Chitãozinho e Xororó','BRMUS', 'SERT0');
 
 --CONTRATOS
 
@@ -166,7 +168,7 @@ insert into payment values('PAY804228814360',350000,true,'10-06-2018','14-06-201
 insert into payment values('PAY133788432121',650000,true,'09-12-2017','14-12-2017','11-12-2017','CT832196BR');
 insert into payment values('PAY326493833787',100000,true,'20-11-2018','24-11-2018','21-11-2018','CT763126BR');
 insert into payment values('PAY793300952268',8.50,true,'10-11-2018','28-11-2018','11-11-2018','CT633045BR');
-insert into payment values('PAY504805424065',8.50,true,'01-12-2018','29-12-2018','12-12-2018','CT633045BR');
+insert into payment values('PAY504805424065',8.50,false,'01-12-2018','29-12-2018','12-12-2018','CT633045BR');
 insert into payment values('PAY288457351224',0,true,'01-01-2018','03-01-2018','01-02-2018','CT000001BR');
 
 
@@ -192,12 +194,12 @@ insert into advertise values('AD39233587',1100,250);
 insert into advertise values('AD59957494',459,152);
 
 --waitingConfirmation
-insert into waitingConfirmation values('SR38A9C5BR','CT38B978BR','SR38A9C5BR');
 insert into waitingConfirmation values('SR38A9C5BR','CT38A778BR','SR38A9C5BR');
-insert into waitingConfirmation values('SR3B56D5BR','CT832196BR','SR38A9C5BR');
-insert into waitingConfirmation values('SR128102BR','CT633045BR','SR38A9C5BR');
-insert into waitingConfirmation values('SR468950BR','CT633045BR','SR38A9C5BR');
-
+insert into waitingConfirmation values('SR3B56D5BR','CT832196BR','SR3B56D5BR');
+insert into waitingConfirmation values('SR128102BR','CT633045BR','SR128102BR');
+insert into waitingConfirmation values('SR468950BR','CT633045BR','SR468950BR');
+insert into waitingConfirmation values('SR684526BR','CT38B978BR','SR684526BR');
+insert into waitingConfirmation values('SR967408BR','CT38B978BR','SR967408BR');
 
 
 --SUBSCRIPTIONS
@@ -520,69 +522,69 @@ insert into album_music values('ALB771132860','MUS147627982192');
 insert into album_music values('ALB771132860','MUS726627602241');
 
 --ARTIST_ALBUM
-insert into artist_album values('ALB019274659','ART83740193');
-insert into artist_album values('ALB563372963','ART51372041');
-insert into artist_album values('ALB427886832','ART42678568');
-insert into artist_album values('ALB552476320','ART98477554');
-insert into artist_album values('ALB216808800','ART24444317');
-insert into artist_album values('ALB502330527','ART24444317');
-insert into artist_album values('ALB911494226','ART24444317');
-insert into artist_album values('ALB320972960','ART83740193');
-insert into artist_album values('ALB321679927','ART30417603');
-insert into artist_album values('ALB503744461','ART87095276');
-insert into artist_album values('ALB916339644','ART92880259');
-insert into artist_album values('ALB675586793','ART84684495');
-insert into artist_album values('ALB771132860','ART46692091');
+insert into artist_album values('ALB019274659','ART8374019');
+insert into artist_album values('ALB563372963','ART5137204');
+insert into artist_album values('ALB427886832','ART4267856');
+insert into artist_album values('ALB552476320','ART9847755');
+insert into artist_album values('ALB216808800','ART2444431');
+insert into artist_album values('ALB502330527','ART2444431');
+insert into artist_album values('ALB911494226','ART2444431');
+insert into artist_album values('ALB320972960','ART8374019');
+insert into artist_album values('ALB321679927','ART3041760');
+insert into artist_album values('ALB503744461','ART8709527');
+insert into artist_album values('ALB916339644','ART9288025');
+insert into artist_album values('ALB675586793','ART8468449');
+insert into artist_album values('ALB771132860','ART4669209');
 
 
 --ARTIST_MUSIC
-insert into artist_music values ('ART51372041','MUS332409297808');
-insert into artist_music values ('ART51372041','MUS266909386861');
-insert into artist_music values ('ART51372041','MUS755193587759');
-insert into artist_music values ('ART51372041','MUS370623362564');
-insert into artist_music values ('ART51372041','MUS454041258580');
-insert into artist_music values ('ART42678568','MUS554952917205');
-insert into artist_music values ('ART42678568','MUS935191998048');
-insert into artist_music values ('ART42678568','MUS737006219502');
-insert into artist_music values ('ART42678568','MUS630101192521');
-insert into artist_music values ('ART42678568','MUS405389935381');
-insert into artist_music values ('ART98477554','MUS404209528501');
-insert into artist_music values ('ART98477554','MUS752990714170');
-insert into artist_music values ('ART98477554','MUS419094411426');
-insert into artist_music values ('ART98477554','MUS904261820951');
-insert into artist_music values ('ART24444317','MUS495587782738');
-insert into artist_music values ('ART24444317','MUS311209835116');
-insert into artist_music values ('ART24444317','MUS441351335036');
-insert into artist_music values ('ART24444317','MUS321125420820');
-insert into artist_music values ('ART24444317','MUS803627890242');
-insert into artist_music values ('ART24444317','MUS499678189033');
-insert into artist_music values ('ART24444317','MUS510080132241');
-insert into artist_music values ('ART24444317','MUS228473132080');
-insert into artist_music values ('ART24444317','MUS346863688404');
-insert into artist_music values ('ART24444317','MUS791445420693');
-insert into artist_music values ('ART83740193','MUS401692849216');
-insert into artist_music values ('ART83740193','MUS465730078441');
-insert into artist_music values ('ART83740193','MUS163639085346');
-insert into artist_music values ('ART83740193','MUS215217021095');
-insert into artist_music values ('ART30417603','MUS748362550431');
-insert into artist_music values ('ART30417603','MUS917486503201');
-insert into artist_music values ('ART30417603','MUS517656588407');
-insert into artist_music values ('ART30417603','MUS492164908762');
-insert into artist_music values ('ART87095276','MUS769656264453');
-insert into artist_music values ('ART87095276','MUS452082827221');
-insert into artist_music values ('ART87095276','MUS122683391529');
-insert into artist_music values ('ART87095276','MUS223996176968');
-insert into artist_music values ('ART92880259','MUS632071860242');
-insert into artist_music values ('ART92880259','MUS620191878095');
-insert into artist_music values ('ART92880259','MUS886791081825');
-insert into artist_music values ('ART84684495','MUS743001163796');
-insert into artist_music values ('ART84684495','MUS446643415008');
-insert into artist_music values ('ART84684495','MUS623910304593');
-insert into artist_music values ('ART84684495','MUS514042991087');
-insert into artist_music values ('ART46692091','MUS151464375612');
-insert into artist_music values ('ART46692091','MUS612402017387');
-insert into artist_music values ('ART46692091','MUS147627982192');
-insert into artist_music values ('ART46692091','MUS726627602241');
+insert into artist_music values ('ART5137204','MUS332409297808');
+insert into artist_music values ('ART5137204','MUS266909386861');
+insert into artist_music values ('ART5137204','MUS755193587759');
+insert into artist_music values ('ART5137204','MUS370623362564');
+insert into artist_music values ('ART5137204','MUS454041258580');
+insert into artist_music values ('ART4267856','MUS554952917205');
+insert into artist_music values ('ART4267856','MUS935191998048');
+insert into artist_music values ('ART4267856','MUS737006219502');
+insert into artist_music values ('ART4267856','MUS630101192521');
+insert into artist_music values ('ART4267856','MUS405389935381');
+insert into artist_music values ('ART9847755','MUS404209528501');
+insert into artist_music values ('ART9847755','MUS752990714170');
+insert into artist_music values ('ART9847755','MUS419094411426');
+insert into artist_music values ('ART9847755','MUS904261820951');
+insert into artist_music values ('ART2444431','MUS495587782738');
+insert into artist_music values ('ART2444431','MUS311209835116');
+insert into artist_music values ('ART2444431','MUS441351335036');
+insert into artist_music values ('ART2444431','MUS321125420820');
+insert into artist_music values ('ART2444431','MUS803627890242');
+insert into artist_music values ('ART2444431','MUS499678189033');
+insert into artist_music values ('ART2444431','MUS510080132241');
+insert into artist_music values ('ART2444431','MUS228473132080');
+insert into artist_music values ('ART2444431','MUS346863688404');
+insert into artist_music values ('ART2444431','MUS791445420693');
+insert into artist_music values ('ART8374019','MUS401692849216');
+insert into artist_music values ('ART8374019','MUS465730078441');
+insert into artist_music values ('ART8374019','MUS163639085346');
+insert into artist_music values ('ART8374019','MUS215217021095');
+insert into artist_music values ('ART3041760','MUS748362550431');
+insert into artist_music values ('ART3041760','MUS917486503201');
+insert into artist_music values ('ART3041760','MUS517656588407');
+insert into artist_music values ('ART3041760','MUS492164908762');
+insert into artist_music values ('ART8709527','MUS769656264453');
+insert into artist_music values ('ART8709527','MUS452082827221');
+insert into artist_music values ('ART8709527','MUS122683391529');
+insert into artist_music values ('ART8709527','MUS223996176968');
+insert into artist_music values ('ART9288025','MUS632071860242');
+insert into artist_music values ('ART9288025','MUS620191878095');
+insert into artist_music values ('ART9288025','MUS886791081825');
+insert into artist_music values ('ART8468449','MUS743001163796');
+insert into artist_music values ('ART8468449','MUS446643415008');
+insert into artist_music values ('ART8468449','MUS623910304593');
+insert into artist_music values ('ART8468449','MUS514042991087');
+insert into artist_music values ('ART4669209','MUS151464375612');
+insert into artist_music values ('ART4669209','MUS612402017387');
+insert into artist_music values ('ART4669209','MUS147627982192');
+insert into artist_music values ('ART4669209','MUS726627602241');
 
 
 --ADV_CONTACT

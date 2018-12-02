@@ -1,8 +1,9 @@
--- Número de usuários por país. Útil para o conhecimento dos anunciantes e futuros planos de expansão da aplicação
+﻿-- Número de usuários por país. Útil para o conhecimento dos anunciantes e futuros planos de expansão da aplicação
     
     select COUNTRYNAME, count(USERID)
     from _user natural join country
     group by COUNTRYNAME
+    order by COUNTRYNAME
 
 -- Verificar usuários em estado de pré-assinatura que não efetuaram o pagamento. Deve retornar todos os usuários de waitingForConfirmation
     
