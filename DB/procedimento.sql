@@ -1,36 +1,54 @@
+-- FUNCTION: public.check_subscribers()
 
--- Controle de promoção de usuários
-create or replace function promote_users(contractid)
-returns void as $$
-begin
+-- DROP FUNCTION public.check_subscribers();
 
-  -- Atualiza status do(s) usuário(s) para UserPremium (2)
-  update _user
-  set PREMIUMSTATE=2
-  where PREMIUMSTATE=1 and USERID in
-  	(select USERID
-  		from waitingConfirmation
-  		where CONTRACTID=contractid
-  	)
-  	
-  -- Insere tupla(s) em subscription
-  insert into subscription(contractid, userid, holderid, planid)
-  	select CONTRACTID as contractid, USERID as userid, HOLDERID as holderid, PLANID as planid
-  	from waitingConfirmation
-  	where CONTRACTID=contractid
-  	
-  -- Remove tupla(s) de waitingConfirmation
-  delete from waitingConfirmation
-  where CONTRACTID = contractid
-end
+CREATE FUNCTION public.check_subscribers()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF 
+AS $BODY$-- Controle de promoção de usuários
+begin 
+	if NEW.RECEIVED=True and NEW.CONTRACTID is not null then
+	
+	  -- Atualiza status do(s) usuário(s) para UserPremium (2)
+	  update _user
+	  set PREMIUMSTATE=2
+	  where PREMIUMSTATE=1 and USERID in
+	  	(select USERID
+	  		from waitingConfirmation
+	  		where CONTRACTID=new.CONTRACTID
+	  	);
+	  	
+	  -- Insere tupla(s) em subscription
+	  insert into subscription(contractid, userid, holderid, planid)
+	  	select CONTRACTID as contractid, USERID as userid, HOLDERID as holderid, PLANID as planid
+	  	from waitingConfirmation
+	  	where CONTRACTID=new.CONTRACTID;
+	  	
+	  -- Remove tupla(s) de waitingConfirmation
+	  delete from waitingConfirmation
+	  where CONTRACTID = new.CONTRACTID;
+	  
+	end if;
+end;
+$BODY$;
+
+ALTER FUNCTION public.check_subscribers()
+    OWNER TO postgres;
 
 
--- Controle de promoção de usuários após recebimento de pagamento
-create trigger check_promotion
-  after update of RECEIVED on payments
-  referencing new row as n
-  when n.RECEIVED=True and n.CONTRACTID is not null
-  execute procedure promote_users(n.CONTRACTID);  
-  
-  
+-- Trigger: check_promotion
+
+-- DROP TRIGGER check_promotion ON public.payment;
+
+CREATE TRIGGER check_promotion
+    AFTER UPDATE OF received
+    ON public.payment
+    FOR EACH ROW
+    EXECUTE PROCEDURE public.check_subscribers();
+
+COMMENT ON TRIGGER check_promotion ON public.payment
+    IS '-- Controle de promoção de usuários após recebimento de pagamento
+';
 

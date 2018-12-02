@@ -110,7 +110,7 @@ create table album
 
 create table artist
 (
-  ARTID char(8) not null,
+  ARTID char(10) not null,
   ARTNAME varchar(30) not null,
   GENRE1 char(5),
   GENRE2 char(5),
@@ -263,7 +263,7 @@ create table album_music
 create table artist_album
 (
   ALBUMID char(12) not null,
-  ARTID char(8) not null,
+  ARTID char(10) not null,
   primary key(ALBUMID, ARTID),
   foreign key(ALBUMID) references album
   	on delete cascade
@@ -275,7 +275,7 @@ create table artist_album
 
 create table artist_music
 (
-  ARTID char(8) not null,
+  ARTID char(10) not null,
   MUSICID char(15) not null,
   primary key(ARTID, MUSICID),
   foreign key(ARTID) references artist

@@ -93,16 +93,14 @@ void getExpiringUsers(PGconn* conn){
                     where CONTRACTID in\
                       (select CONTRACTID\
                       from payment\
-                      where RECEIVED=False and EXPDATE<=";
+                      where RECEIVED=False and EXPDATE<=\'";
   printf("\n\nUsuários em estado de pré-assinatura que não efetuaram o pagamento ate dada data de expiracao\nEntre com uma data (DD-MM-AAAA)\n");
 
-  scanf("%s", &date[1]);
-  date[0] = '\'';
-  date[11] = '\'';
-  date[12] = ')';
-  date[13] = '\0';
+  scanf("%s", date);
+  char endOfCommand[5] = "\')";
 
   strcat(command, date);
+  strcat(command, endOfCommand);
   printf("\n");
 
   PGresult* res = PQexec(conn, command);
@@ -274,6 +272,126 @@ void getMostFrequentCountryAccessers(PGconn* conn){
   printf("\n\n");
 }
 
+void testTrigger(PGconn* conn){
+  char payid[50];
+
+  char command[1024] = "update payment set received=1 where payid=\'";
+  printf("\n\nGatilho de promocao de usuarios\nEntre com um id de pagamento (payid) \n");
+
+  scanf("%s", payid);
+  char endOfCommand[500] = "\'";
+
+  char selectWaitingCommand[1024] = "select * from waitingConfirmation natural join payment where payid=\'";
+  char selectSubscription[1024] = "select * from subscription natural join payment where payid=\'";
+  strcat(command, payid);
+  strcat(command, endOfCommand);
+
+  strcat(selectWaitingCommand, payid);
+  strcat(selectWaitingCommand, endOfCommand);
+  strcat(selectSubscription, payid);
+  strcat(selectSubscription, endOfCommand);
+
+  printf("\nid: %s", payid);
+
+  PGresult* res = PQexec(conn, selectWaitingCommand);
+
+  if(PQstatus(conn) != CONNECTION_OK)
+    printf("Falha na conexão:\n\tErro: %s", PQerrorMessage(conn));
+
+  if(PQresultStatus(res) == PGRES_COMMAND_OK || PQresultStatus(res) == PGRES_TUPLES_OK){
+    printf("Showing field names of waitingConfirmation\n");
+    for(int i = 0; i < PQnfields(res); i++)
+      printf("%s, ", PQfname(res,i));
+
+    printf("\n");
+
+    for(int i = 0; i < PQntuples(res); i++){
+      for(int j = 0; j < PQnfields(res); j++)
+        printf("");
+      printf("\n");
+    }
+  } else {
+    printf("Houve um problema\nMensagem de erro: %s\n", PQerrorMessage(conn));
+  }
+
+  printf("\n\n");
+
+  res = PQexec(conn, selectSubscription);
+
+  if(PQstatus(conn) != CONNECTION_OK)
+    printf("Falha na conexão:\n\tErro: %s", PQerrorMessage(conn));
+
+  if(PQresultStatus(res) == PGRES_COMMAND_OK || PQresultStatus(res) == PGRES_TUPLES_OK){
+    printf("Showing field names of subscription\n");
+    for(int i = 0; i < PQnfields(res); i++)
+      printf("%s, ", PQfname(res,i));
+
+    printf("\n");
+
+    for(int i = 0; i < PQntuples(res); i++){
+      for(int j = 0; j < PQnfields(res); j++)
+        printf("");
+      printf("\n");
+    }
+  } else {
+    printf("Houve um problema\nMensagem de erro: %s\n", PQerrorMessage(conn));
+  }
+
+  printf("\n\n");
+
+  res = PQexec(conn, command);
+  if(PQresultStatus(res) != PGRES_COMMAND_OK && PQresultStatus(res) != PGRES_TUPLES_OK)
+    printf("\nUpdate failed\n");
+  else{
+    printf("\nUpdate ok\n");
+
+    PGresult* res = PQexec(conn, selectWaitingCommand);
+
+    if(PQstatus(conn) != CONNECTION_OK)
+      printf("Falha na conexão:\n\tErro: %s", PQerrorMessage(conn));
+
+    if(PQresultStatus(res) == PGRES_COMMAND_OK || PQresultStatus(res) == PGRES_TUPLES_OK){
+      printf("Showing field names of waitingConfirmation\n");
+      for(int i = 0; i < PQnfields(res); i++)
+        printf("%s, ", PQfname(res,i));
+
+      printf("\n");
+
+      for(int i = 0; i < PQntuples(res); i++){
+        for(int j = 0; j < PQnfields(res); j++)
+          printf("");
+        printf("\n");
+      }
+    } else {
+      printf("Houve um problema\nMensagem de erro: %s\n", PQerrorMessage(conn));
+    }
+
+    printf("\n\n");
+
+    res = PQexec(conn, selectSubscription);
+
+    if(PQstatus(conn) != CONNECTION_OK)
+      printf("Falha na conexão:\n\tErro: %s", PQerrorMessage(conn));
+
+    if(PQresultStatus(res) == PGRES_COMMAND_OK || PQresultStatus(res) == PGRES_TUPLES_OK){
+      printf("Showing field names of subscription\n");
+      for(int i = 0; i < PQnfields(res); i++)
+        printf("%s, ", PQfname(res,i));
+
+      printf("\n");
+
+      for(int i = 0; i < PQntuples(res); i++){
+        for(int j = 0; j < PQnfields(res); j++)
+          printf("");
+        printf("\n");
+      }
+    } else {
+      printf("Houve um problema\nMensagem de erro: %s\n", PQerrorMessage(conn));
+    }
+  }
+  printf("\n\n");
+}
+
 void menu(PGconn* conn){
   char command = 'o';
   printf("\n");
@@ -283,6 +401,7 @@ void menu(PGconn* conn){
   printf("Apresentar numero de acessos por pais e anuncio de um contrato (d)\n");
   printf("Apresentar anunciantes que anunciam em todos os paises de um outro (e)\n");
   printf("Apresentar relacao dos paises que mais frequentemente acessam um dado anuncio (f)\n");
+  printf("Testar gatilho. Atualiza um payment.received para true(g)\n");
   printf("Sair (q)\n");
 
   do {
@@ -305,12 +424,16 @@ void menu(PGconn* conn){
       case 'f':
         getMostFrequentCountryAccessers(conn);
       break;
+      case 'g':
+        testTrigger(conn);
       case 'q':
       break;
       default:
         if(command != 'o')
           printf("Invalid command\n");
     }
+
+    printf("\nDe volta ao menu. Se comando falhar apesar de existir, repita-o ate que funcione\n");
 
     command = getchar();
     while(getchar() != '\n');
