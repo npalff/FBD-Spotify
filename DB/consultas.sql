@@ -36,7 +36,7 @@
     
 -- Dado um anunciante, para cada anúncio e país de seus contratos, o número de acessos efetuados. Útil para relatórios
     
-    select ADID, COUNTRYID, COUNT(USERID)
+    select clickers.ADID, contract_cover.COUNTRYID, COUNT(USERID)
     from (clickers natural join _user) join contract_cover on (clickers.ADID=contract_cover.ADID and _user.COUNTRYID=contract_cover.COUNTRYID)
     where CONTRACTID in
         (select CONTRACTID
@@ -47,11 +47,11 @@
                     where ADVNAME=?
                 )
         )
-    group by ADID, COUNTRYID
+    group by clickers.ADID, contract_cover.COUNTRYID
     
 -- Os anunciantes que anunciam em todos os países que ? anuncia. Avaliação da competição pelo espaço de propaganda por local
     
-    select ADVID
+    select ADVID, ADVNAME
     from advertiser a
     where ADVID <> ? and not exists
         (select *

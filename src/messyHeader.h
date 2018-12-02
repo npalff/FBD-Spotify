@@ -34,7 +34,7 @@ void getUserByCountry(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -75,7 +75,7 @@ void getPreSubscribers(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -117,7 +117,7 @@ void getExpiringUsers(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -165,7 +165,7 @@ void getNumberAccessesByCountry(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -178,12 +178,10 @@ void getNumberAccessesByCountry(PGconn* conn){
 void getAllAdvertisersByRef(PGconn* conn){
   char advname[50];
 
-  char command[1024] = "select ADVID\
+  char command[1024] = "select ADVID, ADVNAME\
                         from advertiser a\
                         where ADVID <>\'";
-  printf("\n\nOs anunciantes que anunciam em todos os países que o referencia anuncia\nEntre com o id do anunciante referencia \n");
 
-  scanf("%s", advname);
   char midOfCommand[200] = "\'and not exists\
                               (select *\
                               from signed natural join contract_cover\
@@ -193,6 +191,8 @@ void getAllAdvertisersByRef(PGconn* conn){
                               from signed natural join contract_cover\
                               where ADVID=a.ADVID\
                             ) )";
+printf("\n\nOs anunciantes que anunciam em todos os países que o referencia anuncia\nEntre com o id do anunciante referencia \n");
+scanf("%s", advname);
 
   strcat(command, advname);
   strcat(command, midOfCommand);
@@ -215,7 +215,7 @@ void getAllAdvertisersByRef(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -262,7 +262,7 @@ void getMostFrequentCountryAccessers(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -275,7 +275,7 @@ void getMostFrequentCountryAccessers(PGconn* conn){
 void testTrigger(PGconn* conn){
   char payid[50];
 
-  char command[1024] = "update payment set received=1 where payid=\'";
+  char command[1024] = "update payment set received=True where payment.payid=\'";
   printf("\n\nGatilho de promocao de usuarios\nEntre com um id de pagamento (payid) \n");
 
   scanf("%s", payid);
@@ -307,7 +307,7 @@ void testTrigger(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -330,7 +330,7 @@ void testTrigger(PGconn* conn){
 
     for(int i = 0; i < PQntuples(res); i++){
       for(int j = 0; j < PQnfields(res); j++)
-        printf("");
+        printf("%s,", PQgetvalue(res,i,j));
       printf("\n");
     }
   } else {
@@ -359,7 +359,7 @@ void testTrigger(PGconn* conn){
 
       for(int i = 0; i < PQntuples(res); i++){
         for(int j = 0; j < PQnfields(res); j++)
-          printf("");
+          printf("%s,", PQgetvalue(res,i,j));
         printf("\n");
       }
     } else {
@@ -382,7 +382,7 @@ void testTrigger(PGconn* conn){
 
       for(int i = 0; i < PQntuples(res); i++){
         for(int j = 0; j < PQnfields(res); j++)
-          printf("");
+          printf("%s,", PQgetvalue(res,i,j));
         printf("\n");
       }
     } else {
