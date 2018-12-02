@@ -38,10 +38,10 @@ create table _user
   EMAIL varchar(40) not null unique,
   PASS varchar(20) not null,
   PREMIUMSTATE numeric(1) not null,
-  USERCOUNTRY char(3) not null,
+  COUNTRYID char(3) not null,
   LIBID char(10) not null unique,
   primary key(USERID),
-  foreign key(USERCOUNTRY) references country
+  foreign key(COUNTRYID) references country
 	on delete restrict
 	on update cascade
 );

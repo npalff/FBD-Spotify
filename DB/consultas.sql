@@ -1,10 +1,10 @@
 -- Número de usuários por país. Útil para o conhecimento dos anunciantes e futuros planos de expansão da aplicação
     
-    select country_name, count(user_id)
-    from user natural join country
-    group by country_name
+    select COUNTRYNAME, count(USERID)
+    from _user natural join country
+    group by COUNTRYNAME
 
--- Verificar usuários em estado de pré-inscrição que efetuaram o pagamento. Deve retornar vazio pois há um gatilho que deve tomar conta disso. Bom para detectar inconsistências
+-- Verificar usuários em estado de pré-assinatura que não efetuaram o pagamento. Deve retornar todos os usuários de waitingForConfirmation
     
     select USERID
     from _user
@@ -17,7 +17,7 @@
                     where CONTRACTID in
                         (select CONTRACTID
                             from payment
-                            where RECEIVED=True
+                            where RECEIVED=False
                         )
                 )
         )
@@ -33,7 +33,7 @@
         )
             
     
--- Dado um contrato, para cada anúncio e país, o número de acessos efetuados. Útil para relatórios
+-- Dado um anunciante, para cada anúncio e país de seus contratos, o número de acessos efetuados. Útil para relatórios
     
     select ADID, COUNTRYID, COUNT(USERID)
     from (clickers natural join _user) join contract_cover on (clickers.ADID=contract_cover.ADID and _user.COUNTRYID=contract_cover.COUNTRYID)
@@ -71,7 +71,7 @@
     having count(_user) >
         (select avg(count_bycountry)
         from (select count(USERID) as count_bycountry
-                from from clickers natural join _user
+                from clickers natural join _user
                 group by COUNTRYID
             ) c_country
         )
