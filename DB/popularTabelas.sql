@@ -137,14 +137,22 @@ insert into artist values('ART9288025','Avicii','ELETR', 'ROCK0');
 insert into artist values('ART8468449','The Piano Guys','CLAS0');
 insert into artist values('ART4669209','Chitãozinho e Xororó','BRMUS', 'SERT0');
 
---CONTRATOS
+--CONTRATOS 
+select * from contract;
 
 insert into contract values('CT38B978BR', 16.90,'10-06-2018','10-12-2018','DOC12485BR',2);
-insert into contract values('CT38A778BR', 350000,'05-06-2018','05-10-2018','DOC13485BR',1);
-insert into contract values('CT832196BR', 650000,'01-01-2018','01-01-2019','DOC58352BR',1);
-insert into contract values('CT763126BR', 100000,'10-12-2018','10-01-2019','DOC13045BR',1);
-insert into contract values('CT633045BR', 8.50,'10-12-2018','10-01-2019','DOC87252BR',2);
-insert into contract values('CT744062BR', 20.00,'10-11-2018','10-12-2018','DOC92368BR',2);
+insert into contract values('CT432711BR', 16.90,'15-10-2018','15-04-2018','DOC12485BR',2);
+insert into contract values('CT979258BR', 16.90,'10-05-2018','10-11-2018','DOC12485BR',2);
+insert into contract values('CT827014BR', 16.90,'17-08-2018','17-02-2018','DOC12485BR',2);
+insert into contract values('CT38A778BR', 16.90,'19-07-2018','19-01-2018','DOC12485BR',2);
+insert into contract values('CT832196BR', 20.00,'10-11-2018','10-05-2018','DOC92368BR',2);
+
+insert into contract values('CT633045BR', 8.50,'10-12-2018','10-06-2019','DOC87252BR',2);
+insert into contract values('CT744062BR', 8.50,'16-11-2018','16-04-2019','DOC87252BR',2);
+
+insert into contract values('CT420346BR', 350000,'05-06-2018','05-10-2018','DOC13485BR',1);
+insert into contract values('CT603360BR', 650000,'01-01-2018','01-01-2019','DOC58352BR',1);
+insert into contract values('CT661533BR', 100000,'10-12-2018','10-01-2019','DOC13045BR',1);
 insert into contract values('CT000001BR', 00.00,'10-11-2018','10-12-2025','DOC00001BR',0); 
 
 --ADVERTISER
@@ -161,15 +169,16 @@ insert into advertiser values('ADV735016','Microsoft');
 
 -- PAYMENNTS
 insert into payment values('PAY839203928394',16.90,true,'09-06-2018','14-10-2018','11-10-2018','CT38B978BR');
-insert into payment values('PAY693700543015',16.90,false,'09-06-2018','11-10-2018','09-05-2015','CT38B978BR');
-insert into payment values('PAY707720324996',16.90,true,'15-10-2018','18-10-2018','17-10-2018','CT38B978BR');
+insert into payment values('PAY693700543015',16.90,false,'09-06-2018','11-10-2018',null,'CT979258BR');
+insert into payment values('PAY707720324996',16.90,true,'15-10-2018','18-10-2018','17-10-2018','CT38A778BR');
+
+insert into payment values('PAY793300952268',8.50,true,'10-11-2018','28-11-2018','11-11-2018','CT633045BR');
+insert into payment values('PAY504805424065',8.50,false,'01-11-2018','19-11-2018',null,'CT744062BR');
+
+insert into payment values('PAY288457351224',0,true,'01-01-2018','03-01-2018','01-02-2018','CT000001BR');
 insert into payment values('PAY325013997392',350000.00,true,'09-05-2018','14-05-2018','11-05-2018','CT38A778BR');
 insert into payment values('PAY804228814360',350000,true,'10-06-2018','14-06-2018','11-06-2018','CT38A778BR');
 insert into payment values('PAY133788432121',650000,true,'09-12-2017','14-12-2017','11-12-2017','CT832196BR');
-insert into payment values('PAY326493833787',100000,true,'20-11-2018','24-11-2018','21-11-2018','CT763126BR');
-insert into payment values('PAY793300952268',8.50,true,'10-11-2018','28-11-2018','11-11-2018','CT633045BR');
-insert into payment values('PAY504805424065',8.50,false,'01-12-2018','29-12-2018','12-12-2018','CT633045BR');
-insert into payment values('PAY288457351224',0,true,'01-01-2018','03-01-2018','01-02-2018','CT000001BR');
 
 
 --DOCUMENTS
@@ -177,6 +186,7 @@ insert into payment values('PAY288457351224',0,true,'01-01-2018','03-01-2018','0
 insert into document values('DOC12485BR','./data/Docs/myDOC12485BR.pdf');
 insert into document values('DOC13485BR','./data/Docs/myDOC13485BR.pdf');
 insert into document values('DOC58352BR','./data/Docs/myDOC58352BR.pdf');
+
 insert into document values('DOC13045BR','./data/Docs/myDOC13045BR.pdf');
 insert into document values('DOC87252BR','./data/Docs/myDOC87252BR.pdf');
 insert into document values('DOC92368BR','./data/Docs/myDOC92368BR.pdf');
@@ -194,21 +204,23 @@ insert into advertise values('AD39233587',1100,250);
 insert into advertise values('AD59957494',459,152);
 
 --waitingConfirmation
-insert into waitingConfirmation values('SR38A9C5BR','CT38A778BR','SR38A9C5BR');
+insert into waitingConfirmation values('SR38A9C5BR','CT38B978BR','SR38A9C5BR');
 insert into waitingConfirmation values('SR3B56D5BR','CT832196BR','SR3B56D5BR');
-insert into waitingConfirmation values('SR128102BR','CT633045BR','SR128102BR');
+insert into waitingConfirmation values('SR128102BR','CT744062BR','SR128102BR');
 insert into waitingConfirmation values('SR468950BR','CT633045BR','SR468950BR');
-insert into waitingConfirmation values('SR684526BR','CT38B978BR','SR684526BR');
-insert into waitingConfirmation values('SR967408BR','CT38B978BR','SR967408BR');
+insert into waitingConfirmation values('SR684526BR','CT979258BR','SR684526BR');
+insert into waitingConfirmation values('SR967408BR','CT432711BR','SR967408BR');
 
 
 --SUBSCRIPTIONS
 insert into subscription values('CT38B978BR', 'SR38A9C5BR', 'SR38A9C5BR', 'PRE');
 insert into subscription values('CT633045BR', 'SR468950BR', 'SR468950BR', 'STU');
-insert into subscription values('CT633045BR', 'SR128102BR', 'SR128102BR', 'STU');
-insert into subscription values('CT744062BR', 'SR3B56D5BR', 'SR4BA135BR', 'FAM');
-insert into subscription values('CT38B978BR', 'SR65879ABR', 'SR65879ABR', 'PRE');
-insert into subscription values('CT38B978BR', 'SR380530BR', 'SR380530BR', 'PRE');
+insert into subscription values('CT744062BR', 'SR128102BR', 'SR128102BR', 'PRE');
+insert into subscription values('CT832196BR', 'SR3B56D5BR', 'SR4BA135BR', 'FAM');
+insert into subscription values('CT38A778BR', 'SR65879ABR', 'SR65879ABR', 'PRE');
+insert into subscription values('CT827014BR', 'SR380530BR', 'SR380530BR', 'PRE');
+insert into subscription values('CT979258BR', 'SR684526BR', 'SR684526BR', 'PRE');
+insert into subscription values('CT432711BR', 'SR967408BR', 'SR967408BR', 'PRE');
 
 --LIB_PLAYLIST
 insert into lib_playlist values('LIB1054357','PL3740192837461');
@@ -598,11 +610,11 @@ insert into adv_contact values('ADV735016','Av. Nações Unidas,12.901 - 31andar
 
 
 --SIGNED
-insert into signed values('CT38A778BR','ADV759289');
-insert into signed values('CT832196BR','ADV759259');
-insert into signed values('CT832196BR','ADV735016');
+insert into signed values('CT420346BR','ADV759289');
+insert into signed values('CT603360BR','ADV759259');
+insert into signed values('CT603360BR','ADV735016');
 insert into signed values('CT000001BR','ADV189046');
-insert into signed values('CT38A778BR','ADV544016');
+insert into signed values('CT661533BR','ADV544016');
 
 
 --CLICKERS
@@ -633,16 +645,27 @@ insert into clickers values ('AD70985105', 'SR468950BR');
 insert into clickers values ('AD48747680', 'SR468950BR');
 insert into clickers values ('AD39233587', 'SR468950BR');
 insert into clickers values ('AD54388617', 'SR128102BR');
+insert into clickers values ('AD54388617', 'SR684526BR');
+insert into clickers values ('AD52184055', 'SR684526BR');
+insert into clickers values ('AD39222699', 'SR684526BR');
+insert into clickers values ('AD39233587', 'SR684526BR');
+insert into clickers values ('AD59957494', 'SR684526BR');
+insert into clickers values ('AD54388617', 'SR967408BR');
+insert into clickers values ('AD70985105', 'SR967408BR');
+insert into clickers values ('AD48747680', 'SR967408BR');
+insert into clickers values ('AD52184055', 'SR967408BR');
+insert into clickers values ('AD39222699', 'SR967408BR');
+insert into clickers values ('AD39233587', 'SR967408BR');
+insert into clickers values ('AD48747680', 'SR655356BR');
+insert into clickers values ('AD52184055', 'SR655356BR');
+insert into clickers values ('AD39222699', 'SR655356BR');
+insert into clickers values ('AD39233587', 'SR655356BR');
 
 
 --CONTRACT_COVER
- insert into contract_cover values(8375018395, 'CT38A778BR','BRA','AD82402847');
- insert into contract_cover values(4644205819, 'CT38A778BR','BRA','AD54388617');
- insert into contract_cover values(5396678399, 'CT832196BR','ITA','AD39233587');
- insert into contract_cover values(8740585725, 'CT832196BR','USA','AD59957494');
+ insert into contract_cover values(8375018395, 'CT420346BR','BRA','AD82402847');
+ insert into contract_cover values(5396678399, 'CT603360BR','ITA','AD39233587');
  insert into contract_cover values(2441841202, 'CT000001BR','BRA','AD70985105');
- insert into contract_cover values(6589199165, 'CT000001BR','BRA','AD39233587');
- insert into contract_cover values(2069778537, 'CT000001BR','BRA','AD59957494');
 
 
 
